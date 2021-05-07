@@ -31,7 +31,7 @@ const reducer = (state = [], action) => {
 		case ADD_TODO:
 			return [{ text: action.text, id: Date.now() }, ...state]; // 이 array는 과거의 state와 새로운 TODO를 갖게된다. ADD_TODO 될 때 인자값의 자리를 바꾸면 입력하는 값이 최신으로 보이게 된다.
 		case DELETE_TODO:
-			return [];
+			return state.filter(toDo => toDo.id !== action.id); // 새로운 array를 return 하기 위해 Filter메소드를 사용하였다. mutate는 절대 금지
 		default:
 			return state;
 	}
@@ -64,7 +64,7 @@ const dispatchAddToDo = (text) => {
 
 const dispatchDeleteToDo = (e) => {
 	// console.log(e.target.parentNode.id);
-	const id = e.target.parentNode.id;
+	const id = parseInt(e.target.parentNode.id); // parseInt를 하지 않으면 id값이 그냥 string으로 받아진다.
 	store.dispatch(deleteToDo(id));
 };
 
