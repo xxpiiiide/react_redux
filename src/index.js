@@ -7,8 +7,7 @@ const ul = document.querySelector('ul');
 const ADD_TODO = 'ADD_TODO';
 const DELETE_TODO = 'DELETE_TODO';
 
-
-// dispatchToDo action 함수
+// dispatchToDo,DeleteToDo action creator로 오로지 object만 return하게 한다.
 const addToDo = (text) => {
 	return {
 		type: ADD_TODO,
@@ -16,7 +15,6 @@ const addToDo = (text) => {
 	};
 };
 
-// dispatchDeleteToDo action 함수
 const deleteToDo = (id) => {
 	return {
 		type: DELETE_TODO,
@@ -29,9 +27,11 @@ const deleteToDo = (id) => {
 const reducer = (state = [], action) => {
 	switch (action.type) {
 		case ADD_TODO:
-			return [{ text: action.text, id: Date.now() }, ...state]; // 이 array는 과거의 state와 새로운 TODO를 갖게된다. ADD_TODO 될 때 인자값의 자리를 바꾸면 입력하는 값이 최신으로 보이게 된다.
+			const newToDoObj = { text: action.text, id: Date.now() };
+			return [newToDoObj, ...state]; // 이 array는 과거의 state와 새로운 TODO를 갖게된다. ADD_TODO 될 때 인자값의 자리를 바꾸면 입력하는 값이 최신으로 보이게 된다.
 		case DELETE_TODO:
-			return state.filter(toDo => toDo.id !== action.id); // 새로운 array를 return 하기 위해 Filter메소드를 사용하였다. mutate는 절대 금지
+			const cleaned = state.filter((toDo) => toDo.id !== action.id); // 새로운 array를 return 하기 위해 Filter메소드를 사용하였다. mutate는 절대 금지
+			return cleaned;
 		default:
 			return state;
 	}
