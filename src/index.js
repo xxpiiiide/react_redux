@@ -51,7 +51,7 @@ const paintToDos = () => {
 		btn.addEventListener('click', dispatchDeleteToDo);
 		li.id = toDo.id;
 		li.innerText = toDo.text;
-		li.appendChild(btn);
+		li.appendChild(btn); // appendChild는 자식태그를 갖는 메서드
 		ul.appendChild(li);
 	});
 };
@@ -71,7 +71,7 @@ const dispatchDeleteToDo = (e) => {
 const onSubmit = (e) => {
 	e.preventDefault();
 	const toDo = input.value;
-	input.value = '';
+	input.value = ''; // 입력값을 초기화 시켜주는 값
 	dispatchAddToDo(toDo);
 	// createToDo(toDo);
 };
