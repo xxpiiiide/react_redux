@@ -4,18 +4,18 @@ const ADD = 'ADD';
 const DELETE = 'DELETE';
 
 export const addToDo = (text) => {
-    return {
-        type:ADD,
-        text
-    }
-}
+	return {
+		type: ADD,
+		text,
+	};
+};
 
 export const deleteToDo = (id) => {
-    return {
-        type: DELETE,
-        id
-    }
-}
+	return {
+		type: DELETE,
+		id,
+	};
+};
 
 const reducer = (state = [], action) => {
 	switch (action.type) {
@@ -30,7 +30,6 @@ const reducer = (state = [], action) => {
 
 const store = createStore(reducer);
 
-
-store.subscribe()  //변경사항을 알려준다.
+// store.subscribe()  //변경사항을 알려준다.
 
 export default store;
