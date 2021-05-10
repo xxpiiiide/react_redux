@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { acttionCreators } from '../store';
 
-function Home({ toDos }) {
+
+function Home({ toDos, addToDo }) {
 	const [text, setText] = useState('');
 	function onChange(e) {
 		setText(e.target.value);
@@ -10,6 +12,7 @@ function Home({ toDos }) {
 		e.preventDefault();
 		console.log(text);
 		setText('');
+        addToDo(text)
 	}
 	return (
 		<>
@@ -30,6 +33,14 @@ function mapStateToProps(state) {
 	return { toDos: state };
 }
 
-export default connect(mapStateToProps)(Home);
+function mapDispatchToProps(dispatch) {
+	console.log(dispatch);
+	return { 
+        addToDo: (text) => dispatch(acttionCreators.addToDo(text))
+     };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 // getCurrentState를 이용하여 store로부터 state를 가져다 줄것이다.(mapStateToProps는 함수로써 Redux Store로 부터 온것이다.)
 // connect()는 Home으로 보내는 props에 추가될 수 있도록 허용해준다.
+// mapDispatchToProps만
