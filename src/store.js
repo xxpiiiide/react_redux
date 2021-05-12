@@ -1,5 +1,5 @@
-import { createStore } from 'redux';
-import { createAction, createReducer } from '@reduxjs/toolkit';
+// import { createStore } from 'redux';
+import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
 
 // 리덕스의 경우 action과 많은 actionCreator를 써야하는 단점들이 있다.
 // switch의 경우 case, default 등 써야할 부분이 많다.
@@ -30,7 +30,7 @@ const reducer = createReducer([], {
 	},
 });
 
-const store = createStore(reducer);
+const store = configureStore({ reducer }); //configureStore는 함수로 아주 쿨한 미들웨어와 함께 store를 생성한다. Redux Developer Tools를 사용할 수 있다.
 
 export const actionCreators = {
 	addToDo,
