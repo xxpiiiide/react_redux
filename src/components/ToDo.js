@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actionCreators } from '../store';
+import { remove } from '../store';
 import { Link } from 'react-router-dom';
 
 function ToDo({ text, onBtnClick, id }) {
@@ -15,7 +15,7 @@ function ToDo({ text, onBtnClick, id }) {
 function mapDispatchToProps(dispatch, ownProps) {
 	//console.log(ownProps); // text와 id값을 받아온다.
 	return {
-		onBtnClick: () => dispatch(actionCreators.deleteToDo(ownProps.id)), // ToDo의 props와 redux-store의 dispatch의 조합으로 함수를 만들었다.
+		onBtnClick: () => dispatch(remove(ownProps.id)), // ToDo의 props와 redux-store의 dispatch의 조합으로 함수를 만들었다.
 	};
 }
 
