@@ -39,7 +39,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	console.log(dispatch);
+	//console.log(dispatch);
 	return {
 		addToDo: (text) => dispatch(actionCreators.addToDo(text)),
 	};
